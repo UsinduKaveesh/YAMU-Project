@@ -1,0 +1,192 @@
+/* --- Container (Left Aligned) --- */
+.complaint-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 40px; 
+  background-color: #f8f9fc;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.complaint-form-card {
+  background: white;
+  width: 100%;
+  max-width: 1100px; 
+  padding: 40px 50px; /* Increased padding for a more spacious feel */
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+/* --- Header Section --- */
+.header-title-area {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px; /* Increased spacing under header */
+}
+
+.header-icon {
+  font-size: 32px;
+  color: #3b82f6;
+}
+
+.complaint-form-card h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.subtitle {
+  color: #6b7280;
+  font-size: 15px;
+  margin: 4px 0 0;
+}
+
+/* --- Expanded Form Spacing --- */
+.form-group {
+  margin-bottom: 28px; /* Increased from 16px to fill empty space */
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.flex-1 { flex: 1; }
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 10px;
+}
+
+/* --- Taller Inputs --- */
+input[type="text"], select, textarea {
+  padding: 14px 18px; /* Slightly more padding for a premium feel */
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+textarea {
+  min-height: 180px; /* Forces the description box to be taller */
+  resize: vertical;
+}
+
+/* --- Priority Radio Buttons --- */
+.priority-options {
+  display: flex;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+  cursor: pointer;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.dot.low { background-color: #10b981; }
+.dot.medium { background-color: #f59e0b; }
+.dot.high { background-color: #ef4444; }
+
+/* --- Scaled Up Attachment Box --- */
+.upload-box-large {
+  border: 2px dashed #e5e7eb;
+  border-radius: 12px;
+  padding: 30px; /* Taller padding to fill vertical space */
+  text-align: center;
+  background-color: #fafafa;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.upload-box-large:hover {
+  background-color: #f3f4f6;
+  border-color: #3b82f6;
+}
+
+.upload-icon {
+  font-size: 32px;
+  color: #3b82f6;
+  margin-bottom: 12px;
+}
+
+.upload-box-large p {
+  font-size: 14px;
+  color: #4b5563;
+  margin: 0;
+}
+
+.upload-box-large p span {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.upload-subtext {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 8px;
+  display: block;
+}
+
+.file-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* --- Action Buttons --- */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 20px;
+  border-top: 1px solid #f3f4f6;
+  padding-top: 30px;
+}
+
+.btn-cancel {
+  background: white;
+  border: 1px solid #e5e7eb;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-submit {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-submit:hover { background: #1d4ed8; }

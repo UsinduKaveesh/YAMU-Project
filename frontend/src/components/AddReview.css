@@ -1,0 +1,197 @@
+/* --- Header Section (Matched to Portal Theme) --- */
+.header-title-area {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.header-icon {
+  font-size: 32px;
+  color: #3b82f6; /* Consistent YAMU blue */
+}
+
+.review-card h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.booking-id {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 4px 0 0;
+  display: block;
+}
+
+/* --- Container & Card (Left Aligned for Form) --- */
+.main-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 40px;
+  background-color: #f8f9fc;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+.review-card {
+  background: white;
+  width: 100%;
+  max-width: 1100px;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+/* --- Success State (FORCED TO MIDDLE) --- */
+.success-card {
+  text-align: center;
+  padding: 60px 40px !important;
+  max-width: 600px !important; /* Compact width for success messages */
+  margin: auto !important;     /* This centers it horizontally and vertically in the main-container */
+  animation: slideUp 0.5s ease-out;
+}
+
+.success-card h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.success-message {
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  font-size: 16px;
+}
+
+.success-icon-big {
+  font-size: 80px;
+  color: #10b981;
+  margin-bottom: 24px;
+  filter: drop-shadow(0 4px 10px rgba(16, 185, 129, 0.2));
+}
+
+/* --- Rating Sections --- */
+.rating-section {
+  margin-bottom: 28px;
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 24px;
+}
+
+.rating-section:last-of-type {
+  border-bottom: none;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+/* --- Profiles --- */
+.driver-profile, .vehicle-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  background: #f9fafb;
+  padding: 12px 16px;
+  border-radius: 12px;
+  width: fit-content;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: #3b82f6; 
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vehicle-icon-bg {
+  background: #eff6ff; 
+  color: #3b82f6;
+  border: 1px solid #dbeafe;
+}
+
+/* --- Stars --- */
+.star {
+  font-size: 32px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.star:hover { color: #d97706; }
+.star.empty:hover { color: #fbbf24; }
+.star.filled { color: #f59e0b; }
+.star.empty { color: #e5e7eb; }
+
+/* --- Feedback --- */
+.feedback-section textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  background-color: #fff;
+  transition: all 0.2s;
+}
+
+.feedback-section textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* --- Buttons --- */
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 40px;
+  border-top: 1px solid #f3f4f6;
+  padding-top: 24px;
+}
+
+.submit-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.submit-btn:hover { background: #1d4ed8; }
+
+.skip-btn {
+  background: white;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.skip-btn:hover { background: #f9fafb; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
