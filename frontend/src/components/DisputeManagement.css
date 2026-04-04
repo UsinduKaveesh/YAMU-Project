@@ -1,4 +1,4 @@
-/* --- Main Container --- */
+/* --- 1. Main Container --- */
 .dispute-mgmt-container {
   padding: 40px;
   background-color: #f8f9fc;
@@ -13,15 +13,14 @@
   margin-bottom: 24px;
 }
 
-/* --- Controls Row (Search & Filters) --- */
+/* --- 2. Controls Row --- */
 .controls-row {
   display: flex;
-  justify-content: space-between; /* 1. Keep the separation */
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 28px;
 }
 
-/* Search Box Styling */
 .search-group {
   position: relative;
   flex: 0 1 400px;
@@ -33,7 +32,6 @@
   top: 50%;
   transform: translateY(-50%);
   color: #9ca3af;
-  font-size: 14px;
 }
 
 .search-group input {
@@ -43,16 +41,8 @@
   border-radius: 10px;
   background: white;
   font-size: 14px;
-  transition: all 0.2s ease;
 }
 
-.search-group input:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-}
-
-/* Filters Styling */
 .filters-group {
   display: flex;
   gap: 12px;
@@ -67,15 +57,9 @@
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  min-width: 150px;
-  transition: all 0.2s ease;
 }
 
-.filter-dropdown:hover {
-  border-color: #d1d5db;
-}
-
-/* --- Table Styles --- */
+/* --- 3. Dispute Table (Stable Version) --- */
 .main-table-card {
   background: white;
   border-radius: 14px;
@@ -108,7 +92,7 @@
 }
 
 .ticket-id {
-  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-family: 'JetBrains Mono', monospace;
   font-weight: 600;
   color: #111827;
 }
@@ -116,15 +100,16 @@
 .customer-cell {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
 }
 
 .user-icon {
-  font-size: 26px;
-  color: #e5e7eb;
+  font-size: 32px;
+  color: #3b82f6;
+  flex-shrink: 0;
 }
 
-/* --- Badges --- */
+/* --- 4. Badges --- */
 .badge {
   padding: 4px 12px;
   border-radius: 20px;
@@ -143,7 +128,6 @@
 .status.under-review { background: #eff6ff; color: #2563eb; border: 1px solid #dbeafe; }
 .status.solved { background: #f0fdf4; color: #16a34a; border: 1px solid #dcfce7; }
 
-/* --- Action Button --- */
 .btn-view-action {
   background: white;
   border: 1px solid #e5e7eb;
@@ -156,170 +140,191 @@
   transition: all 0.2s;
 }
 
-.btn-view-action:hover {
-  background: #f9fafb;
-}
-
-/* --- Pagination --- */
-.pagination-footer {
-  padding: 16px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #6b7280;
-  font-size: 14px;
-}
-
-.page-btns {
-  display: flex;
-  gap: 8px;
-}
-
-.page-nav, .page-num {
-  padding: 8px 14px;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  background: white;
-  cursor: pointer;
-}
-
-.page-num.active {
-  background: #2563eb;
-  color: white;
-  border-color: #2563eb;
-}
-
-/* =========================================================================
-   2. DETAILED VIEW MODAL STYLES (RESTORED ORIGINAL DETAILED LAYOUT)
-   ========================================================================= */
-
+/* --- 5. Complaint Popup (Refined Spacing & Fonts) --- */
 .modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Deep dark overlay */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 3000;
-  backdrop-filter: blur(4px);
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 3000; backdrop-filter: blur(4px);
 }
 
 .modal-content {
-  background: white;
-  width: 100%;
+  background: white; 
+  width: 100%; 
   max-width: 650px;
-  border-radius: 16px;
-  padding: 32px;
+  border-radius: 20px; 
+  padding: 40px; /* Increased padding for better breathing room */
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  animation: modalScale 0.3s ease-out;
 }
 
 .modal-header {
-  display: flex;
-  justify-content: space-between;
+  display: flex; 
+  justify-content: space-between; 
   align-items: center;
-  margin-bottom: 24px;
-  border-bottom: 1px solid #f3f4f6;
-  padding-bottom: 16px;
+  margin-bottom: 30px; 
+  border-bottom: 1px solid #f3f4f6; 
+  padding-bottom: 20px;
 }
 
-.modal-header h3 { 
-  margin: 0; 
-  color: #111827; 
-  font-size: 18px;
-}
-
-.close-modal {
-  background: none;
-  border: none;
-  font-size: 20px;
-  color: #9ca3af;
-  cursor: pointer;
-}
-
-.modal-body label {
-  display: block;
-  font-size: 12px;
+.modal-header h3 {
+  font-size: 22px;
   font-weight: 700;
-  color: #6b7280;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-/* Original Structured Grid/Layout */
-.modal-row {
-  display: flex;
-  gap: 24px;
-  margin-bottom: 24px;
-}
-
-.modal-info-item {
-  flex: 1;
-}
-
-.modal-info-item p {
-  margin: 0;
-  font-size: 15px;
   color: #111827;
-  font-weight: 500;
 }
 
-.booking-ref-text {
-  font-family: 'Courier New', monospace;
-  color: #2563eb;
+.modal-row {
+  display: flex; 
+  gap: 40px; /* Wider gap between info items */
+  margin-bottom: 25px;
 }
 
-.full-width {
-  flex: none;
-  width: 100%;
+.modal-info-item label {
+  display: block; 
+  font-size: 11px; 
+  font-weight: 700;
+  color: #94a3b8; 
+  text-transform: uppercase; 
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+
+.modal-info-item p { 
+  margin: 0; 
+  font-size: 16px; 
+  color: #1e293b; 
+  font-weight: 500; 
 }
 
 .description-box {
-  background: #f9fafb;
-  padding: 20px;
+  background: #f8fafc; 
+  padding: 20px; 
   border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  color: #374151;
+  border: 1px solid #e2e8f0; 
+  color: #475569; 
   line-height: 1.6;
-  font-size: 14px;
-  margin-bottom: 24px;
-  max-height: 300px;
+  font-size: 14px; 
+  margin-bottom: 30px;
+  max-height: 150px; 
   overflow-y: auto;
 }
 
-/* Original Detailed Footer and Status Buttons */
-.modal-footer-actions {
-  border-top: 1px solid #f3f4f6;
-  padding-top: 24px;
+/* --- 6. Status Buttons (Vibrant & Permanent Colors) --- */
+.modal-footer-actions label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 12px;
 }
 
-.status-button-group {
-  display: flex;
-  gap: 12px;
-  margin-top: 12px;
+.status-button-group { 
+  display: flex; 
+  gap: 15px; 
+  margin-bottom: 30px;
 }
 
 .btn-status {
-  flex: 1;
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  font-weight: 600;
-  font-size: 13px;
+  flex: 1; 
+  padding: 12px; 
+  border-radius: 10px;
+  font-size: 13px; 
+  font-weight: 700; 
   cursor: pointer;
-  transition: opacity 0.2s;
+  border: 2px solid transparent; 
+  transition: all 0.2s ease;
 }
 
-.btn-status.pending { background: #ffedd5; color: #9a3412; }
-.btn-status.review { background: #dbeafe; color: #1e40af; }
-.btn-status.solved { background: #dcfce7; color: #166534; }
+/* Colors visible even when not hovering */
+.btn-status.pending { background: #fff7ed; color: #ea580c; border-color: #ffedd5; }
+.btn-status.review { background: #eff6ff; color: #2563eb; border-color: #dbeafe; }
+.btn-status.solved { background: #f0fdf4; color: #16a34a; border-color: #dcfce7; }
 
-.btn-status:hover { opacity: 0.8; }
+/* Active/Hover states intensify */
+.btn-status.pending:hover, .btn-status.pending.active { background: #ffedd5; border-color: #ea580c; }
+.btn-status.review:hover, .btn-status.review.active { background: #dbeafe; border-color: #2563eb; }
+.btn-status.solved:hover, .btn-status.solved.active { background: #dcfce7; border-color: #16a34a; }
 
-@keyframes modalScale {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+/* --- 7. Notification Area & Hover Effect --- */
+.modal-notification-section { 
+  border-top: 1px solid #f3f4f6; 
+  padding-top: 25px; 
 }
+
+.modal-notification-section label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 10px;
+}
+
+.notification-textarea {
+  width: 100%; 
+  min-height: 110px; 
+  padding: 15px;
+  border: 1px solid #e2e8f0; 
+  border-radius: 12px;
+  font-size: 14px; 
+  font-family: inherit;
+  resize: none;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.notification-textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.btn-send-notif {
+  width: 100%; 
+  padding: 16px;
+  background: #2563eb; 
+  color: white; 
+  border: none;
+  border-radius: 12px; 
+  font-weight: 700; 
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+/* RE-ADDED HOVER EFFECT */
+.btn-send-notif:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.btn-send-notif:active {
+  transform: translateY(0);
+}
+
+/* --- 8. Success Popup --- */
+.success-popup-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(15, 23, 42, 0.7); display: flex;
+  justify-content: center; align-items: center;
+  z-index: 5000; backdrop-filter: blur(8px);
+}
+
+.success-popup-content {
+  background: white; padding: 45px; border-radius: 24px;
+  width: 100%; max-width: 420px; text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.success-icon-circle { font-size: 70px; color: #16a34a; margin-bottom: 20px; }
+
+.btn-success-close {
+  width: 100%; padding: 15px; background: #2563eb; color: white;
+  border: none; border-radius: 12px; font-weight: 700; cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-success-close:hover { background: #1d4ed8; }

@@ -6,17 +6,17 @@ import PassengerSidebar from './components/PassengerSidebar';
 import SubmitComplaint from './components/SubmitComplaint';
 import DisputeManagement from './components/DisputeManagement';
 import CustomerDashboard from './components/CustomerDashboard';
-import CustomerNotifications from './components/CustomerNotifications'; // Added new import
+import CustomerNotifications from './components/CustomerNotifications';
+// 1. IMPORT the new Dashboard component
+import AdminDashboard from './components/AdminDashboard'; 
 import './index.css'; 
 
 function App() {
-  // Toggle between 'passenger' (Customer) and 'admin' portals
   const [appMode, setAppMode] = useState('passenger'); 
   
-  // State for Admin navigation
-  const [adminView, setAdminView] = useState('approvals');
+  // 2. CHANGE default view to 'dashboard' so it's the first thing you see
+  const [adminView, setAdminView] = useState('dashboard');
   
-  // State for Customer navigation
   const [passengerView, setPassengerView] = useState('dashboard'); 
 
   const currentBooking = {
@@ -32,13 +32,9 @@ function App() {
     return (
       <div className="passenger-portal-layout">
         <PassengerSidebar activeView={passengerView} setActiveView={setPassengerView} />
-
         <main className="passenger-content">
-          {/* Customer Portal Views */}
           {passengerView === 'dashboard' && <CustomerDashboard />}
-
           {passengerView === 'notifications' && <CustomerNotifications />} 
-
           {passengerView === 'review' && (
             <AddReview 
               bookingId={currentBooking.id} 
@@ -48,15 +44,10 @@ function App() {
               vehicleType={currentBooking.vehicleType}
             />
           )}
-
           {passengerView === 'complaint' && (
             <SubmitComplaint bookingId={currentBooking.id} />
           )}
-
-          <button 
-            onClick={() => setAppMode('admin')} 
-            className="dev-mode-toggle"
-          >
+          <button onClick={() => setAppMode('admin')} className="dev-mode-toggle">
             Switch to Admin Portal
           </button>
         </main>
@@ -70,12 +61,8 @@ function App() {
       <AdminSidebar activeView={adminView} setActiveView={setAdminView} />
 
       <main className="admin-content">
-        {adminView === 'dashboard' && (
-          <div style={{ padding: '40px' }}>
-            <h1>Admin Dashboard</h1>
-            <p>Quality Reporting and Analytics will appear here.</p>
-          </div>
-        )}
+        {/* 3. SWAP the placeholder for the real AdminDashboard component */}
+        {adminView === 'dashboard' && <AdminDashboard />}
 
         {adminView === 'approvals' && <ReviewApproval />}
 

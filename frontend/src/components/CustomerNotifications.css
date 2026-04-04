@@ -6,7 +6,6 @@
   font-family: 'Inter', sans-serif;
 }
 
-/* Container fills the FULL screen width now */
 .notifications-container {
   width: 100%;
   margin: 0;
@@ -38,7 +37,7 @@
   color: #6b7280;
 }
 
-/* --- SEARCH BAR (Full Width & Aligned) --- */
+/* --- SEARCH BAR --- */
 .search-bar-container {
   position: relative;
   width: 100%; 
@@ -57,7 +56,7 @@
 
 .search-bar-container input {
   width: 100%;
-  box-sizing: border-box; /* Fixes the 'longer' search bar issue */
+  box-sizing: border-box;
   padding: 14px 45px 14px 48px;
   background: white;
   border: 1px solid #e5e7eb;
@@ -91,7 +90,7 @@
   cursor: pointer;
 }
 
-/* --- NOTIFICATION LIST CARD (Full Width) --- */
+/* --- NOTIFICATION LIST CARD --- */
 .notif-list-card {
   width: 100%;
   background: white;
@@ -124,6 +123,7 @@
   background-color: #f8fafc;
 }
 
+/* Status Icons Mapping */
 .notif-status-icon {
   width: 44px;
   height: 44px;
@@ -137,15 +137,29 @@
 
 .notif-status-icon.solved { background: #dcfce7; color: #16a34a; }
 .notif-status-icon.system { background: #dbeafe; color: #2563eb; }
+.notif-status-icon.pending { background: #fff7ed; color: #ea580c; }
+.notif-status-icon.under-review { background: #eff6ff; color: #2563eb; }
 
 .notif-content-summary {
   flex: 1;
+}
+
+.notif-top-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .notif-title {
   font-weight: 700;
   color: #1e293b;
   font-size: 15px;
+}
+
+.badge-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .new-badge {
@@ -155,8 +169,21 @@
   font-weight: 800;
   padding: 2px 8px;
   border-radius: 20px;
-  margin-left: 10px;
 }
+
+/* Mini Status Pills (For the list view) */
+.status-pill-mini {
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.status-pill-mini.solved { background: #dcfce7; color: #16a34a; }
+.status-pill-mini.pending { background: #fff7ed; color: #ea580c; border: 1px solid #ffedd5; }
+.status-pill-mini.under-review { background: #eff6ff; color: #2563eb; border: 1px solid #dbeafe; }
 
 .notif-brief {
   margin: 4px 0 0;
@@ -164,7 +191,7 @@
   color: #64748b;
 }
 
-/* Meta Group (Fixed Date/Arrow Alignment) */
+/* Meta Group */
 .notif-meta {
   display: flex;
   align-items: center;
@@ -183,14 +210,13 @@
   font-size: 14px;
 }
 
-/* --- EXPANDED SECTION (RESTORED STYLING) --- */
+/* --- EXPANDED SECTION --- */
 .notif-details-expanded {
   background-color: #fcfcfd;
   border-top: 1px solid #f1f5f9;
 }
 
 .details-content {
-  /* Restored the previous 88px offset */
   padding: 24px 24px 24px 88px; 
 }
 
@@ -199,9 +225,29 @@
   color: #94a3b8;
   margin-bottom: 16px;
   display: flex;
+  justify-content: space-between; /* Space out date and status pill */
+  align-items: center;
+}
+
+.details-header span {
+  display: flex;
   align-items: center;
   gap: 6px;
 }
+
+/* Expanded Status Labels */
+.status-pill-expanded {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 8px;
+  text-transform: uppercase;
+}
+
+.status-pill-expanded.solved { background: #dcfce7; color: #16a34a; }
+.status-pill-expanded.pending { background: #fff7ed; color: #ea580c; border: 1px solid #ffedd5; }
+.status-pill-expanded.under-review { background: #eff6ff; color: #2563eb; border: 1px solid #dbeafe; }
+.status-pill-expanded.system { background: #dbeafe; color: #2563eb; }
 
 .details-body label {
   display: block;
@@ -215,9 +261,9 @@
 
 .details-body p {
   margin: 0;
-  font-size: 14px; /* Restored size */
+  font-size: 14px;
   color: #334155;
-  line-height: 1.6; /* Restored spacing */
+  line-height: 1.6;
 }
 
 .details-footer {
@@ -230,8 +276,8 @@
   background: #1e293b;
   color: white;
   border: none;
-  padding: 8px 16px; /* Restored original button size */
-  border-radius: 8px; /* Restored original roundness */
+  padding: 8px 16px;
+  border-radius: 8px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;

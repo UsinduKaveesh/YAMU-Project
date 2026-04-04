@@ -1,0 +1,109 @@
+/* --- Keep all your existing CSS from before --- */
+
+.admin-analytics-container {
+  padding: 40px;
+  background-color: #f8f9fc;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+/* --- Header Section (No Changes) --- */
+.analytics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.header-left { display: flex; align-items: center; gap: 16px; }
+.main-title-icon { font-size: 32px; color: #3b82f6; }
+.analytics-header h1 { font-size: 28px; font-weight: 700; color: #111827; margin: 0; }
+.analytics-header p { color: #64748b; font-size: 15px; margin-top: 4px; }
+
+.refresh-btn {
+  background: white; border: 1px solid #e5e7eb; padding: 10px 18px;
+  border-radius: 10px; font-weight: 600; cursor: pointer; color: #4b5563;
+  display: flex; align-items: center; gap: 8px;
+  transition: all 0.2s ease;
+}
+
+/* --- Title & Legends (No Changes) --- */
+.title-icon-blue { color: #3b82f6; font-size: 20px; }
+.card-title h3 { font-size: 18px; font-weight: 700; color: #111827; margin: 0; display: flex; align-items: center; gap: 12px; }
+.legend { display: flex; gap: 16px; align-items: center; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #64748b; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.dot.driver { background: #3b82f6; } .dot.vehicle { background: #93c5fd; }
+.dot.new { background: #ef4444; } .dot.resolved { background: #10b981; }
+
+/* --- Stats Grid (No Changes) --- */
+.analytics-stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-bottom: 40px; }
+.a-stat-card { background: white; padding: 24px; border-radius: 16px; border: 1px solid #e5e7eb; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); display: flex; align-items: center; gap: 20px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.a-stat-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+.a-stat-icon { width: 52px; height: 52px; border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 22px; }
+.rating { background: #fffbeb; color: #f59e0b; }
+.vehicle { background: #eff6ff; color: #3b82f6; }
+.reviews { background: #f0f9ff; color: #0284c7; }
+.resolution { background: #f0fdf4; color: #10b981; }
+.a-stat-info label { font-size: 11px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.05em; }
+.a-stat-info h3 { margin: 4px 0 0; font-size: 24px; font-weight: 700; color: #1e293b; }
+
+/* --- NEW: Y-Axis & Chart Layout Adjustments --- */
+.manual-chart-ui, .manual-trend-ui { 
+  display: flex; 
+  flex-direction: row; /* Change to row to put labels next to chart */
+  gap: 15px; 
+}
+
+.y-axis-labels, .y-axis-labels-trend {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 30px; /* Aligns with the bar/X-axis label height */
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: right;
+  min-width: 25px;
+}
+
+.chart-content, .trend-content {
+  flex: 1;
+  position: relative;
+  height: 250px;
+}
+
+.trend-content { height: 180px; }
+
+/* --- Manual Chart Details (No changes, just container targets) --- */
+.grid-background { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding-bottom: 30px; }
+.grid-line { border-bottom: 1px dashed #f1f5f9; width: 100%; height: 1px; }
+
+.bars-container { position: relative; z-index: 2; height: 100%; display: flex; justify-content: space-around; align-items: flex-end; padding-bottom: 30px; }
+.bar-set { display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; width: 70px; }
+.bar-pair { display: flex; gap: 6px; align-items: flex-end; height: 100%; }
+.bar-single { width: 22px; border-radius: 4px 4px 0 0; transition: all 0.3s ease; }
+.bar-single:hover { filter: brightness(1.1); transform: scaleY(1.05); }
+.d-bar { background: #3b82f6; }
+.v-bar { background: #93c5fd; }
+.star-label { margin-top: 12px; font-size: 12px; font-weight: 600; color: #64748b; }
+
+/* --- Ranking & Trends (No Changes) --- */
+.analytics-main-row, .analytics-bottom-row { display: flex; gap: 24px; margin-bottom: 24px; }
+.flex-1 { flex: 1; } .flex-2 { flex: 2; }
+.chart-card-polished, .ranking-card, .trend-card-polished { background: white; border-radius: 16px; border: 1px solid #e5e7eb; padding: 28px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); flex: 1; }
+.card-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+
+.perf-list-polished { display: flex; flex-direction: column; gap: 14px; }
+.perf-item-new { display: flex; align-items: center; gap: 16px; padding: 14px; background: #fcfcfd; border: 1px solid #f1f5f9; border-radius: 12px; transition: all 0.2s ease; }
+.perf-item-new:hover { background: #f8fafc; transform: translateX(8px); border-color: #dbeafe; }
+.perf-rank { font-size: 14px; font-weight: 700; color: #94a3b8; min-width: 20px; }
+.perf-main { flex: 1; display: flex; align-items: center; gap: 14px; }
+.p-avatar-box, .v-avatar-box { width: 44px; height: 44px; border-radius: 10px; background: white; border: 1px solid #e5e7eb; display: flex; justify-content: center; align-items: center; font-size: 18px; color: #3b82f6; }
+.p-name { margin: 0; font-weight: 700; color: #1e293b; font-size: 15px; }
+.p-trips { font-size: 12px; color: #94a3b8; font-weight: 500; }
+.p-rating-pill { padding: 6px 12px; border-radius: 20px; background: #fff7ed; color: #ea580c; font-weight: 700; font-size: 13px; display: flex; align-items: center; gap: 6px; border: 1px solid #ffedd5; }
+.vehicle-pill { background: #eff6ff; color: #3b82f6; border-color: #dbeafe; }
+
+.trend-line-svg { flex: 1; overflow: visible; }
+.trend-x-axis { display: flex; justify-content: space-between; padding-top: 15px; font-size: 12px; font-weight: 600; color: #94a3b8; }

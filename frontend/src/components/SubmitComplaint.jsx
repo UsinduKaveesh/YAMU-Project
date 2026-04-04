@@ -31,24 +31,26 @@ const SubmitComplaint = ({ bookingId }) => {
     }
   };
 
-  if (isSubmitted) {
-    return (
-      <div className="complaint-container">
-        <div className="complaint-form-card success-state">
-          <div className="success-icon-container">
-            <FaCheckCircle className="success-icon-big" />
-          </div>
-          <h2>Complaint Submitted!</h2>
-          <p className="success-message">
-            Your ticket for booking <strong>#{formData.bookingReference}</strong> has been successfully created. 
-          </p>
-          <button className="btn-submit" onClick={() => window.location.reload()}>
-            Back to Home
-          </button>
+  // --- Updated Success Return Block ---
+if (isSubmitted) {
+  return (
+    /* Added 'success-view' class here to handle the centering */
+    <div className="complaint-container success-view"> 
+      <div className="complaint-form-card success-state">
+        <div className="success-icon-container">
+          <FaCheckCircle className="success-icon-big" />
         </div>
+        <h2>Complaint Submitted!</h2>
+        <p className="success-message">
+          Your ticket for booking <strong>#{formData.bookingReference}</strong> has been successfully created. 
+        </p>
+        <button className="btn-submit" onClick={() => window.location.reload()}>
+          Back to Home
+        </button>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
   return (
     <div className="complaint-container">

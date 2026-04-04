@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { 
   FaBell, 
   FaChevronDown, 
@@ -12,52 +13,54 @@ import {
 import './CustomerNotifications.css';
 
 const CustomerNotifications = () => {
+  const [notifications, setNotifications] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [expandedId, setExpandedId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Mock Data
-  const [notifications] = useState([
-    {
-      id: 1,
-      category: 'Solved',
-      title: 'Complaint #TC-882 Solved',
-      message: 'Your complaint regarding the AC in Tesla Model 3 has been resolved.',
-      details: 'Our maintenance team inspected vehicle Plate #WP-K1234. The AC compressor was replaced. We have credited 50 loyalty points to your account as a gesture of goodwill. Thank you for your patience.',
-      date: 'Apr 02, 2026',
-      time: '02:30 PM',
-      isUnread: true
-    },
-    {
-      id: 2,
-      category: 'System',
-      title: 'Loyalty Milestone Reached!',
-      message: 'You have earned 100 bonus points for completing 20 rides this month.',
-      details: 'Congratulations! You are now just 200 points away from unlocking "Elite Status," which grants you access to luxury vehicle pre-booking and specialized drivers.',
-      date: 'Apr 01, 2026',
-      time: '10:15 AM',
-      isUnread: false
-    },
-    {
-      id: 3,
-      category: 'System',
-      title: 'Profile Verified',
-      message: 'Your account identity verification is complete.',
-      details: 'Your documents have been successfully processed. You can now enjoy full access to all YAMU Customer Portal features, including dispute filing and priority support.',
-      date: 'Mar 28, 2026',
-      time: '09:00 AM',
-      isUnread: false
+  // Fetch Notifications from Backend
+  useEffect(() => {
+    fetchNotifications();
+  }, []);
+
+  const fetchNotifications = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/notifications');
+      
+      // Sort: Newest notifications at the top
+      const sortedData = res.data.sort((a, b) => 
+        new Date(b.createdAt) - new Date(a.createdAt)
+      );
+      
+      setNotifications(sortedData);
+      setLoading(false);
+    } catch (err) {
+      console.error("Error fetching notifications:", err);
+      setLoading(false);
     }
-  ]);
+  };
 
   const toggleExpand = (id) => {
     setExpandedId(expandedId === id ? null : id);
   };
 
-  // --- Real-time Filter Logic ---
+  // Helper to format date as "Apr 4, 2026"
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  };
+
+  // Real-time Filter Logic
   const filteredNotifications = notifications.filter(notif => 
     notif.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    notif.message.toLowerCase().includes(searchTerm.toLowerCase())
+    notif.message.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (notif.formattedID && notif.formattedID.toLowerCase().includes(searchTerm.toLowerCase()))
   );
+
+  if (loading) return <div className="loading-state">Loading your updates...</div>;
 
   return (
     <div className="notifications-page">
@@ -92,40 +95,55 @@ const CustomerNotifications = () => {
         <div className="notif-list-card">
           {filteredNotifications.map((notif) => (
             <div 
-              key={notif.id} 
-              className={`notif-wrapper ${expandedId === notif.id ? 'expanded' : ''} ${notif.isUnread ? 'is-unread' : ''}`}
+              key={notif._id} 
+              className={`notif-wrapper ${expandedId === notif._id ? 'expanded' : ''} ${notif.isUnread ? 'is-unread' : ''}`}
             >
-              <div className="notif-main-row" onClick={() => toggleExpand(notif.id)}>
-                <div className={`notif-status-icon ${notif.category.toLowerCase()}`}>
-                  {notif.category === 'Solved' ? <FaCheckCircle /> : <FaInfoCircle />}
+              <div className="notif-main-row" onClick={() => toggleExpand(notif._id)}>
+                {/* Status Icon based on Type */}
+                <div className={`notif-status-icon ${notif.type?.toLowerCase().replace(' ', '-') || 'system'}`}>
+                  {notif.type === 'Solved' ? <FaCheckCircle /> : <FaInfoCircle />}
                 </div>
                 
                 <div className="notif-content-summary">
                   <div className="notif-top-line">
                     <span className="notif-title">{notif.title}</span>
-                    {notif.isUnread && <span className="new-badge">New</span>}
+                    <div className="badge-group">
+                       {/* Added Status Pill Label */}
+                      {notif.type && (
+                        <span className={`status-pill-mini ${notif.type.toLowerCase().replace(' ', '-')}`}>
+                          {notif.type}
+                        </span>
+                      )}
+                      {notif.isUnread && <span className="new-badge">New</span>}
+                    </div>
                   </div>
-                  <p className="notif-brief">{notif.message}</p>
+                  <p className="notif-brief">{notif.message.substring(0, 100)}...</p>
                 </div>
 
                 <div className="notif-meta">
-                  <span className="notif-date">{notif.date}</span>
+                  <span className="notif-date">{formatDate(notif.createdAt)}</span>
                   <div className="expand-icon">
-                    {expandedId === notif.id ? <FaChevronUp /> : <FaChevronDown />}
+                    {expandedId === notif._id ? <FaChevronUp /> : <FaChevronDown />}
                   </div>
                 </div>
               </div>
 
               {/* Expandable Section */}
-              {expandedId === notif.id && (
+              {expandedId === notif._id && (
                 <div className="notif-details-expanded">
                   <div className="details-content">
                     <div className="details-header">
-                      <span><FaCalendarAlt /> Received on {notif.date} at {notif.time}</span>
+                      <span>
+                        <FaCalendarAlt /> Received on {formatDate(notif.createdAt)} at {new Date(notif.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </span>
+                      {/* Expanded Status Label */}
+                      <span className={`status-pill-expanded ${notif.type?.toLowerCase().replace(' ', '-') || 'system'}`}>
+                        Current Status: {notif.type || 'System'}
+                      </span>
                     </div>
                     <div className="details-body">
-                      <label>Full Update Message</label>
-                      <p>{notif.details}</p>
+                      <label>Update Details {notif.formattedID && `(${notif.formattedID})`}</label>
+                      <p>{notif.message}</p>
                     </div>
                     <div className="details-footer">
                       <button className="btn-action">Help Center</button>

@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const complaintSchema = new mongoose.Schema({
+  // New field: Required to identify which customer to notify
+  userId: {
+    type: String,
+    default: "USER_001" // Default placeholder for existing records
+  },
   subject: { 
     type: String, 
     required: true,
@@ -26,19 +31,18 @@ const complaintSchema = new mongoose.Schema({
     type: String, 
     required: true 
   },
-  // This will store the filename or URL of the uploaded attachment
   attachment: { 
     type: String,
     default: null
   },
-  // Admin-only field to track the lifecycle of the dispute
+  // UPDATED: Matches the labels used in the Admin UI
   status: { 
     type: String, 
-    enum: ['Open', 'In Progress', 'Resolved'], 
-    default: 'Open' 
+    enum: ['Pending', 'Under Review', 'Solved'], 
+    default: 'Pending' 
   }
 }, { 
-  timestamps: true // Automatically adds 'createdAt' and 'updatedAt'
+  timestamps: true 
 });
 
 module.exports = mongoose.model('Complaint', complaintSchema);

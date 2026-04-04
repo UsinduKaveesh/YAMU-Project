@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const complaintRoutes = require('./routes/complaintRoutes'); // 1. Imported here
+const complaintRoutes = require('./routes/complaintRoutes');
+const notificationRoutes = require('./routes/notificationRoutes'); // 1. Import the new routes
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -19,7 +20,8 @@ mongoose.connect(uri)
 
 // Register Routes
 app.use('/api/reviews', require('./routes/reviewRoutes'));
-app.use('/api/complaints', complaintRoutes); // 2. Registered here (Perfect!)
+app.use('/api/complaints', complaintRoutes);
+app.use('/api/notifications', notificationRoutes); // 2. Register the Notification door!
 
 // Test route
 app.get('/', (req, res) => {
@@ -29,5 +31,3 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
 });
-
-// REMOVED the duplicate line that was here
